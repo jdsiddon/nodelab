@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+	<style>
+	.blue{background:blue;}
+	.yellow{background:yellow;}
+	</style>
+	<script src="/javascripts/jquery.js"></script>
+	 <link href="/javascripts/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	  var socket = io.connect('http://localhost');
+	  socket.on('news', function (data) {
+	    console.log(data);
+	    socket.emit('my other event', { my: 'data' });
+	  });
+	</script>
+	
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+	<h2>New </h2>
+	<a href="/bob">Bob's page</a>
+	
+	<br>
+	<br>
+
+	
+	<form id="yesNo" class="form-inline">
+	  <input type="radio" name="update" value="yes" checked="checked" id="r1"/>
+
+	  <label for="r1">Yes</label>
+	  <input type="radio" name="update" value="no" id="r2"/>
+
+	  <label for="r2">No</label>
+	  <input type="button" id="submitButton" value="Submit"/>
+	</form>
+	
+	
+	
+	<div class="row-fluid">
+	<div class="span2">
+		<input class="btn color" type="button" name="color" value="blue" >
+		<input class="btn color" type="button" name="color" value="yellow" >
+		<input class="btn color" type="button" name="color" value="Remove Colors" >
+		
+	</div>
+	
+	<input class="cookie" type="button" name="color" value="Chocolate" >
+	
+		<div id="coloredBox" class="toggler span8">
+		    <h3>Animate</h3>
+		    <p>
+		      Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+		    </p>
+		</div>
+		<div id="uptodate" class="span2">
+			<p>eVet is up to date</p>
+			<%= defaultColor %>
+	  	</div>
+	</div>	
+		
+	
+		
+	<div id="updateResult" style="display: none">
+	 <p></p>
+	</div>
+
+	<script src="/javascripts/index.js"></script>
+	
+	
+	
+  </body>
+</html>
