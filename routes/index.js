@@ -37,6 +37,11 @@ exports.update = function(req, res) {
 	}
 };
 
+
+
+
+
+
 exports.changeColor = function(req, res) {
 	console.log(req.body.color);
 	//console.log(data.color);
@@ -50,9 +55,7 @@ exports.getColor = function(req, res) {
 };
 
 
-exports.setcookie = function(req, res) {
-	
-};
+
 
 /*
 exports.updateNo = function(req, res) {

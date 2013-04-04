@@ -11,14 +11,11 @@ var express = require('express')
   , path = require('path');
 
 
-
-var boxColor = {};
-boxColor.color = "yellow";
-
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
+  app.set('setColor', 'yellow'); //setColor to yellow
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -47,13 +44,6 @@ app.post('/addUser', routes.addUser);
 app.post('/update', routes.update);
 app.post('/changeColor', routes.changeColor);
 
-app.get('/cookieset', function (req, res) {
-    res.cookie('bar', 'baz');
-});
-
-app.get('/cookiesend', function (req, res) {
-    res.send(req.cookies.bar);
-});
 
 
 
