@@ -35,14 +35,21 @@ app.get('/users', user.list);
 app.get('/test', routes.test); //test route
 app.get('/bob', routes.bob); //add
 app.get('/getColor', routes.getColor);
+
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+  console.log(app.get('setColor'));// added to print out "yellow"
+
 });
 //var io = require('socket.io').listen(server); //added
 
 app.post('/addUser', routes.addUser);
 app.post('/update', routes.update);
 app.post('/changeColor', routes.changeColor);
+
+app.locals({
+  color: 'yellow'
+});
 
 
 

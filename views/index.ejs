@@ -10,14 +10,7 @@
 	<script src="/javascripts/jquery.js"></script>
 	 <link href="/javascripts/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
-	  var socket = io.connect('http://localhost');
-	  socket.on('news', function (data) {
-	    console.log(data);
-	    socket.emit('my other event', { my: 'data' });
-	  });
-	</script>
+
 	
   </head>
   <body>
@@ -60,7 +53,7 @@
 		</div>
 		<div id="uptodate" class="span2">
 			<p>eVet is up to date</p>
-			<%= defaultColor %>
+			<div id="moreColors" class="span2 <%= locals.color %>">more colors</div>
 	  	</div>
 	</div>	
 		

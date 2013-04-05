@@ -1,3 +1,11 @@
+/*$(document).ready(function() {
+  if("#moreColors" != NULL) {
+	
+  }
+});*/
+
+
+
 $("#submitButton").click(function() {
 //	$('#uptodate').removeClass('bad').addClass('good'); //change class
 	var data = $("#yesNo").serialize();
@@ -10,32 +18,10 @@ $("#submitButton").click(function() {
 		});
 	});
 });
-/*
-$(document).ready(function() {
-	console.log("GET");
-	var data = $(this).attr("value");
-	$.get("getColor", {color:data}, function(data, textStatus, jqXHR) {
-		console.log("data is: " + data);
-		console.log("textStatus is: " + textStatus);
-		console.log("jqXHR is: " + jqXHR);
-	});
-});
-*/
 
-$(".cookie").click(function() {
-	console.log(x);
-//	res.cookie('cart', { items: [1,2,3] });
-	console.log("Clicked Cookie!");
-	
-});
-
-
-
-$(".btn.color").click(function() {
-	
+$("#coloredBox").click(function() {
 	var data = $(this).attr("value");
 	$("#coloredBox").removeClass('yellow blue');
-	
 	$.post("changeColor", {color:data}, function(data,textStatus,jqXHR) {
 		switch(data.color) {
 			case "yellow":
@@ -54,11 +40,6 @@ $(".btn.color").click(function() {
 			break;
 		}	
 	});
-	/*$.get("changeColor", {color:data}, function(data, textStatus, jqXHR) {
-		console.log("data is: " + data);
-		console.log("textStatus is: " + textStatus);
-		console.log("jqXHR is: " + jqXHR);
-	})*/
 });
 
 
