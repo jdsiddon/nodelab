@@ -6,6 +6,8 @@
 
 
 
+
+
 $("#submitButton").click(function() {
 //	$('#uptodate').removeClass('bad').addClass('good'); //change class
 	var data = $("#yesNo").serialize();
@@ -19,19 +21,20 @@ $("#submitButton").click(function() {
 	});
 });
 
-$("#coloredBox").click(function() {
+//clicking .btn.color tells which color #coloredBox is curretly is
+$(".btn.color").click(function() {
 	var data = $(this).attr("value");
-	$("#coloredBox").removeClass('yellow blue');
+	console.log(data);
+	$("#coloredBox").removeClass('yellow blue red');
 	$.post("changeColor", {color:data}, function(data,textStatus,jqXHR) {
-		switch(data.color) {
+		switch(data) {
 			case "yellow":
-				console.log("color is " + data.color);
+				console.log("color is " + data);
 				$("#coloredBox").addClass('yellow');
-				console.log(app.locals.title);
 			break;
 			
 			case "blue":
-				console.log("color is " + data.color);
+				console.log("color is " + data);
 				$("#coloredBox").addClass('blue');
 			break;
 			

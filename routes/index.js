@@ -3,18 +3,24 @@
  * GET home page.
  */
 var util = require('util');
+var cfg = require('./myConfig'); // set myConfig.js file to the variable cfg for use in this file
 
 exports.index = function(req, res){
+  cfg.test(); //my test function Adam helped me wit
+  var defaultColor = cfg.index();
+  console.log("coming from index.js " + defaultColor);
   res.render('index', { title: 'Express'});
 };
 
 exports.test = function(req, res){
+  cfg.test();
   res.render('test', { title: 'Bobydalfd'});
 };
 
 exports.bob = function(req, res){
   res.render('bob', { title: 'bob page for site'});
 };
+
 
 
 exports.addUser = function(req, res) {
@@ -36,17 +42,21 @@ exports.update = function(req, res) {
 };
 
 exports.changeColor = function(req, res) {
-	console.log(req.body.color);
-	res.send(req.body);
+	var newColor = req.body.color;
+	console.log(newColor);
+	res.send(newColor);
 };
 
 exports.getColor = function(req, res) {
 	console.log(req);
 	res.json(boxColor);
+	console.log(configTest);
 };
 
 
-
+exports.setcookie = function(req, res) {
+	
+};
 
 /*
 exports.updateNo = function(req, res) {
