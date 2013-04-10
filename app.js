@@ -13,12 +13,6 @@ var express = require('express')
   , path = require('path');
 
 
-// Set the silly counter to 1.
-cfg.test(); // whee!
-
-var boxColor = {};
-boxColor.color = "yellow";
-
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
@@ -63,12 +57,4 @@ server.listen(app.get('port'), function(){
 app.post('/addUser', routes.addUser);
 app.post('/update', routes.update);
 app.post('/changeColor', routes.changeColor);
-
-
-
-
-app.locals({
-  color: 'yellow'
-});
-
 
