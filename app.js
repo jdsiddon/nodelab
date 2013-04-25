@@ -64,7 +64,7 @@ var logger =  new (winston.Logger)({ //instantiate my custom logger named logger
 });
 logger.log('info', 'PIzzza Hello distributed log files!', { pie: 'Raspberry' });  //create a log entry and enter it into someFile.log
 logger.stream({ start: -1 }).on('log', function(log) {
-	console.log(log);     //stream my log to the console
+	console.log(log);     //stream my log to the consoleeeeee
 });
 
 
