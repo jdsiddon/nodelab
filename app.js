@@ -10,6 +10,7 @@ var express = require('express')
   , user = require('./routes/user')
   , cfg = require('./routes/myConfig')
   , errors = require('./routes/errors')
+  , winston = require('winston')
   , path = require('path');
 
 
@@ -52,7 +53,20 @@ app.get('/bob', routes.bob); //add
 app.get('/initialColor', cfg.initialColor); //setting initial color onload
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
+  
 });
+
+
+var logger =  new (winston.Logger)({ //instantiate my custom logger named logger
+	transports: [
+		new (winston.transports.File)({ filename: './public/someFile.log' })  //define someFile.log as my transport layer
+	]
+});
+logger.log('info', 'PIzzza Hello distributed log files!', { pie: 'Raspberry' });  //create a log entry and enter it into someFile.log
+logger.stream({ start: -1 }).on('log', function(log) {
+	console.log(log);     //stream my log to the console
+});
+
 
 app.post('/addUser', routes.addUser);
 app.post('/update', routes.update);
