@@ -23,7 +23,8 @@
 	<br>
 	<br>
 
-	
+<div class="row-fluid">
+	<div class="span12">
 	<form id="yesNo" class="form-inline">
 	  <input type="radio" name="update" value="yes" checked="checked" id="r1"/>
 
@@ -33,36 +34,39 @@
 	  <label for="r2">No</label>
 	  <input type="button" id="submitButton" value="Submit"/>
 	</form>
+	</span>
+</div>	
 	
 	
-	
-	<div class="row-fluid">
+<div class="row-fluid">
 	<div class="span2">
 		<input class="btn color" type="button" name="color" value="blue" >
 		<input class="btn color" type="button" name="color" value="yellow" >
 		<input class="btn color" type="button" name="color" value="Remove Colors" >
 		
 	</div>
-	
+</div>
+
+<div class="row-fluid">
 	<input class="cookie" type="button" name="color" value="Chocolate" >
-	
-		<div id="coloredBox" class="toggler span8">
-		    <h3>Animate</h3>
-		    <p>
-		      Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
-		    </p>
-		</div>
-		<div id="uptodate" class="span2">
-			<p>eVet is up to date</p>
-			<div id="moreColors" class="span2 <%= locals.color %>">more colors</div>
-	  	</div>
-	</div>	
-		
-	
-		
-	<div id="updateResult" style="display: none">
-	 <p></p>
+	<div id="coloredBox" class="toggler span8">
+		<h3>Animate</h3>
+		<p>Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.</p>
 	</div>
+	<div id="uptodate" class="span2">
+		<p>eVet is up to date</p>
+		<div id="moreColors" class="span2 <%= locals.color %>">more colors</div>
+	</div>
+</div>	
+		
+	
+<div class="row-fluid">
+	<div class="span2">		
+		<div id="updateResult" style="display: none">
+	 		<p></p>
+		</div>
+	</div>
+</div>
 
 	<script src="/javascripts/index.js"></script>
 	<script src="/javascripts/myConfig.js"></script>
