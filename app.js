@@ -10,6 +10,7 @@ var express = require('express')
   , user = require('./routes/user')
   , cfg = require('./routes/myConfig')
   , errors = require('./routes/errors')
+  , expressWinston = require('express-winston')
   , winston = require('winston')
   , path = require('path');
 
@@ -24,7 +25,29 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  
+  app.use(expressWinston.logger({
+	transports: [
+		new winston.transports.Console({
+			json: true,
+			colorize: true
+		})
+		new winston.transports.File({
+			filename: './public/textfiles/test.log'
+		})
+	]
+  }));
+
   app.use(app.router);
+
+  app.use(expressWinston.errorLogger({
+	transports: [
+		new winston.transports.Console({
+			json: true,
+			colorize: true
+		})
+	]
+  }));
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(function(req, res, next) {
 	res.status(404);
@@ -55,19 +78,6 @@ server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
   
 });
-
-
-var logger =  new (winston.Logger)({ //instantiate my custom logger named logger
-	transports: [
-		new (winston.transports.File)({ filename: './public/someFile.log' })  //define someFile.log as my transport layer
-	]
-});
-logger.log('info', 'PIzzza Hello distributed log files!', { pie: 'Raspberry' });  //create a log entry and enter it into someFile.log
-logger.stream({ start: -1 }).on('log', function(log) {
-	console.log(log);     //stream my log to the consoleeeeee
-});
-
-
 app.post('/addUser', routes.addUser);
 app.post('/update', routes.update);
 app.post('/changeColor', routes.changeColor);
