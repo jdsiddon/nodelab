@@ -11,6 +11,7 @@ var express = require('express')
   , cfg = require('./routes/myConfig')
   , errors = require('./routes/errors')
   , winston = require('winston')
+  , expressWinston = require('express-winston')
   , path = require('path');
 
 
@@ -24,6 +25,14 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(expressWinston.logger({ //instantiate error logger 
+	transports: [
+		new winston.transports.File({ 
+			json: true,
+			filename: './public/textfiles/infoLog.log' //define someFile.log as my transport layer
+		})  
+	]
+  }));
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(function(req, res, next) {
@@ -34,7 +43,6 @@ app.configure(function(){
 						   body: 'Please try again'});
 	}
   });
-
 });
 
 app.configure('development', function(){
@@ -45,27 +53,12 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/test', routes.test); //test route
-app.get('/bob', routes.bob); //add
-//app.get('/404', ) //why do I not need a route?
-
-//app.get('/getColor', routes.getColor);
-
+app.get('/bob', routes.bob); 
 app.get('/initialColor', cfg.initialColor); //setting initial color onload
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
-  
 });
 
-
-var logger =  new (winston.Logger)({ //instantiate my custom logger named logger
-	transports: [
-		new (winston.transports.File)({ filename: './public/someFile.log' })  //define someFile.log as my transport layer
-	]
-});
-logger.log('info', 'PIzzza Hello distributed log files!', { pie: 'Raspberry' });  //create a log entry and enter it into someFile.log
-logger.stream({ start: -1 }).on('log', function(log) {
-	console.log(log);     //stream my log to the console
-});
 
 
 app.post('/addUser', routes.addUser);
